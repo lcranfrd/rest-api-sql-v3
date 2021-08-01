@@ -15,14 +15,44 @@ module.exports = (sequelize) => {
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'First Name is required!',
+        },
+        notEmpty: {
+          msg: 'Please provide a First Name!'
+        },
+      }
     },
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Last Name is required!',
+        },
+        notEmpty: {
+          msg: 'Please provide a Last Name!',
+        },
+      }
     },
     emailAddress: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: {
+        msg: 'Email Record already exists',
+      },
+      validate: {
+        notNull: {
+          msg: 'Email address is required!',
+        },
+        notEmpty: {
+          msg: 'Please provide an Email Address!',
+        },
+        isEmail: {
+          msg: 'Email must be in valid formation',
+        },
+      }
     },
     password: {
       type: DataTypes.STRING,
@@ -36,7 +66,7 @@ module.exports = (sequelize) => {
         },
         len: {
           args: [6, 30],
-          msg: 'The password needs to be between 6 and 30 characters in length!'
+          msg: 'The password needs to be between 6 and 30 characters in length!',
         },
       },
     }

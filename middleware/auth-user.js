@@ -16,17 +16,17 @@ exports.authenticateUser = async (req, res, next) => {
     if(user) {
       const authenticated = bcrypt
         .compareSync(credentials.pass, user.password);
-      if(authenticate) {
-        console.log('Authenticated success for ${user.email}!')
+      if(authenticated) {
+        console.log(`Authenticated success for ${user.emailAddress}!`)
         req.currentUser = user;
       } else {
-          message = 'Authentication failure for username: ${user.email}!';
+          message = `Authentication failure for username: ${user.emailAddress}!`;
         }
     } else {
-        message = 'User not found for username: ${credentials.name}!';
+        message = `User not found for username: ${credentials.name}!`;
      }
   } else {
-      message = 'Auth header not found!';
+      message = `Auth header not found!`;
     }
 
   if(message) {
