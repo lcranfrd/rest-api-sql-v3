@@ -3,6 +3,10 @@
 // load modules
 const express = require('express');
 const morgan = require('morgan');
+const routes = require('./routes/index');
+const userRoutes = require('./routes/users');
+const courseRoutes = require('./routes/courses');
+const { sequelize } = require('./models/index.js');
 
 // variable to enable global error logging
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
@@ -13,12 +17,29 @@ const app = express();
 // setup morgan which gives us http request logging
 app.use(morgan('dev'));
 
+//Test DB Connection
+(async() => {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+    await sequelize.sync();
+    console.log('Database Synced on Start')
+  } catch (error) {
+      console.error('Unable to connect to the database:', error);
+    }
+  }
+)();
+
 // setup a friendly greeting for the root route
-app.get('/', (req, res) => {
-  res.json({
-    message: 'Welcome to the REST API project!',
-  });
-});
+// app.get('/', (req, res) => {
+//   res.json({
+//     message: 'Welcome to the REST API project!',
+//   });
+// });
+
+app.use('/', routes);
+app.use('/api/users', userRoutes);
+app.use('/api/courses', courseRoutes);
 
 // send 404 if no other route matched
 app.use((req, res) => {
