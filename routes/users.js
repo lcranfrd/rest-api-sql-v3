@@ -20,11 +20,13 @@ router.get('/', authenticateUser, asyncHandler(async (req, res) => {
 
 router.post('/', asyncHandler( async (req, res) => {
   try{
+    console.log(req.body)
     await User.create(req.body);
     res.status(201);
   } catch (error) {
+    console.log(sequelizeErrors.some(v => v === error.name))
     if(sequelizeErrors.some(v => v === error.name)) {
-      errors = error.errors.map(err => err.message) || res.status(400).json({ errors });
+      errors = error.errors.map(err => err.message) && res.status(400).json({ errors });
     } else {
       throw error;
     }
