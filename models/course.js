@@ -1,7 +1,13 @@
+/**========================================================================
+ * *                                courses.js
+ *   
+ *   Model definition for Course instance. 
+ *
+ *========================================================================**/
+
 'use strict';
 
 const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize) => {
   class Course extends Model{}

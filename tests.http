@@ -101,9 +101,7 @@ Authorization: Basic joe@smith.com:joepassword
 Content-Type: application/json
 
 {
-  "userId": 2,
-  "title": "",
-  "description": ""
+
 }
 
 ### Update Course (Incomplete Data)

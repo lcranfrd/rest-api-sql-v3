@@ -31,13 +31,7 @@ app.use(morgan('dev'));
   }
 )();
 
-// setup a friendly greeting for the root route
-// app.get('/', (req, res) => {
-//   res.json({
-//     message: 'Welcome to the REST API project!',
-//   });
-// });
-
+// setup basic routes
 app.use('/', routes);
 app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
