@@ -9,6 +9,14 @@ exports.authenticateUser = async (req, res, next) => {
   const credentials = auth(req);
   if(credentials) {
     const user = await User.findOne({
+      attributes:
+      {
+        exclude:
+          [
+            'createdAt',
+            'updatedAt',
+          ]
+      },
       where: {
         emailAddress: credentials.name,
       }
@@ -18,7 +26,8 @@ exports.authenticateUser = async (req, res, next) => {
         .compareSync(credentials.pass, user.password);
       if(authenticated) {
         console.log(`Authenticated success for ${user.emailAddress}!`)
-        req.currentUser = user;
+        req.currentUser = user.toJSON();
+        delete req.currentUser.password;
       } else {
           message = `Authentication failure for username: ${user.emailAddress}!`;
         }

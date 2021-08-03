@@ -63,11 +63,14 @@ module.exports = (sequelize) => {
         notEmpty: {
           msg: 'Please enter a password!',
         },
-        len: {
-          args: [6, 30],
-          msg: 'The password needs to be between 6 and 30 characters in length!',
-        },
+        // len: {
+        //   args: [6, 30],
+        //   msg: 'The password needs to be between 6 and 30 characters in length!',
+        // },
       },
+      set(val) {
+        this.setDataValue('password', bcrypt.hashSync(val, 10));
+      } 
     }
   },
     { sequelize,
@@ -78,11 +81,11 @@ module.exports = (sequelize) => {
   User.associate = (models) => {
     User.hasMany(models.Course, {
       // as: '',
-      // foreignKey: {
-      //   fieldName: '',
-      //   field: '',
-      //   allowNull: false,
-      // },
+      foreignKey: {
+        fieldName: 'userId',
+        field: 'userId',
+        allowNull: false,
+      },
       onDelete: 'cascade',
     });
   }

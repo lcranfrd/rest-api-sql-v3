@@ -13,14 +13,32 @@ module.exports = (sequelize) => {
     },
     title: {
       type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Title is required!',
+        },
+        notEmpty: {
+          msg: 'Please provide a Course Title!',
+        },
+      }
     },
     description: {
       type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Description is required!',
+        },
+        notEmpty: {
+          msg: 'Please provide a Course Description!',
+        },
+      }
     },
     estimatedTime: {
       type: DataTypes.STRING,
     },
-    materials: {
+    materialsNeeded: {
       type: DataTypes.STRING,
     },
   },
@@ -31,12 +49,18 @@ module.exports = (sequelize) => {
 
   Course.associate = (models) => {
     Course.belongsTo(models.User, {
-      // as: '',
-      // foreignKey: {
-      //   fieldName: '',
-      //   field: '',
-      //   allowNull: false,
-      // },
+      // as: 'userId',
+      foreignKey: {
+        fieldName: 'userId',
+        field: 'userId',
+        allowNull: false,
+      },
+      notNull: {
+        msg: 'Your userId is Required!',
+      },
+      notEmpty: {
+        msg: 'Your userId must not be empty!',
+      },
       onDelete: 'cascade',
     });
   }
