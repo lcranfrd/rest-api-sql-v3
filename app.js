@@ -2,7 +2,7 @@
  * ?                                                     ABOUT
  * @author         :  L. Bennett Crantford
  * @email          :  lcranfrd@comcast.net
- * @repo           :  
+ * @repo           :  https://github.com/lcranfrd/rest-api-sql-v3.git
  * @createdOn      :  8/3/2021
  * @description    :  TExpress/Sequelize/Sqlite-3 API project without HTML
  *                    for TreeHouse FS Techdegree Project #9.
