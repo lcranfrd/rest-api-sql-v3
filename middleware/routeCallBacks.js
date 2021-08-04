@@ -114,7 +114,7 @@ const courses = {
   deleteCoursesId: asyncHandler(async (req, res, next) => {
     const course = await Course.findByPk(req.params.id);
     if(course) {
-      (req.currentUser.Id === course.userId)
+      (req.currentUser.id === course.userId)
         ? await course.destroy() && res.status(204).end()
         : res.status(403).end();
     } else {
