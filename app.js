@@ -1,3 +1,13 @@
+/**========================================================================+++
+ * ?                                                     ABOUT
+ * @author         :  L. Bennett Crantford
+ * @email          :  lcranfrd@comcast.net
+ * @repo           :  
+ * @createdOn      :  8/3/2021
+ * @description    :  TExpress/Sequelize/Sqlite-3 API project without HTML
+ *                    for TreeHouse FS Techdegree Project #9.
+ *=========================================================================+**/
+
 'use strict';
 
 // load modules

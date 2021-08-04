@@ -1,7 +1,7 @@
 # rest-api-sql-v3
  TreeHouse FSTD Project #9
 
-This is an Express/Sequelize/Sqlite-3 API project without any HTML.
+This is an Express/Sequelize/Sqlite-3 API project without HTML.
 
 To run the project you will first need to run 'npm run seed'. Then run 'npm start'.
 This will allow a minimal clean database that will allow the preset tests to function for the first time.
