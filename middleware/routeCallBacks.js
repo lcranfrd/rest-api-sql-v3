@@ -43,12 +43,14 @@ const courses = {
 
   getCourses: asyncHandler( async (req, res) => {
     const courses = await Course.findAll({
+      attributes: {
+        exclude: ['createdAt', 'updatedAt', ]
+      },
       include:
       [
         {
           model: User,
-          attributes:
-          [ 'lastName', 'firstName', 'emailAddress', ]
+          attributes: [ 'lastName', 'firstName', 'emailAddress', ]
         }
       ]
     });
@@ -59,12 +61,14 @@ const courses = {
     const course = await Course.findOne({
       where:
         { id: req.params.id },
+      attributes: {
+        exclude: ['createdAt', 'updatedAt', ]
+      },
       include: 
         [
           {
             model: User,
-            attributes:
-            [ 'lastName','firstName','emailAddress', ]
+            attributes: [ 'lastName','firstName','emailAddress', ]
           }
         ]
     });
@@ -76,8 +80,7 @@ const courses = {
       if(req.currentUser) {
         req.body.userId = req.currentUser.id;
         const course = await Course.create(req.body,
-          {fields:
-            [ 'userId', 'title', 'description', 'materialsNeeded', ]
+          {fields: [ 'userId', 'title', 'description', 'materialsNeeded', ]
           },
         );
         res.location('/api/course/' + course.id).status(201).end();

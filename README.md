@@ -9,7 +9,7 @@ This will allow a minimal clean database that will allow the preset tests to fun
 To test the project you would:
 
 1: Use an API testing platform such as Postman, https://www.postman.com or
-2: Use the 'test.http' file for preset route tests.
+2: Use the 'test.http' file in xcode with 'rest-client' extension enabled for the preset route tests.
 
 The callback functions for the routes under the routes directory have been placed in the middleware/routeCallbacks.js file for easier listing.
 
