@@ -12,7 +12,7 @@
 const express = require('express');
 const router = express.Router();
 const { authenticateUser } = require('../middleware/auth-user');
-const { users } = require('../middleware/routeCallBacks');
+const { users } = require('../controllers/user');
 
 router.get('/', authenticateUser, users.getUsers);
 router.post('/', users.postUsers);

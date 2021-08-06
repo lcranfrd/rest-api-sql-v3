@@ -12,7 +12,7 @@
 const express = require('express');
 const router = express.Router();
 const { authenticateUser } = require('../middleware/auth-user');
-const { courses } = require('../middleware/routeCallBacks');
+const { courses } = require('../controllers/course');
 
 
 router.get('/', courses.getCourses);
